@@ -1,0 +1,1 @@
+export const API_URL = "https://suaxe-admin-api.herokuapp.com/api";

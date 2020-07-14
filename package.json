@@ -14,7 +14,7 @@
       "url": "https://github.com/orgs/coreui/people"
     }
   ],
-  "homepage": ".",
+  "homepage": "https://suaxe-admin.herokuapp.com",
   "copyright": "Copyright 2017-2020 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "private": true,
@@ -30,8 +30,11 @@
     "@coreui/react": "^3.0.3",
     "@coreui/react-chartjs": "^1.0.0",
     "@coreui/utils": "^1.3.1",
+    "antd": "^4.4.1",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
+    "date-fns": "^2.14.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "node-sass": "^4.14.1",
@@ -41,7 +44,8 @@
     "react-dom": "^16.13.1",
     "react-redux": "7.2.0",
     "react-router-dom": "^5.2.0",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "redux-saga": "^1.1.3"
   },
   "devDependencies": {
     "react-scripts": "^3.4.1"
@@ -75,7 +79,7 @@
     ]
   },
   "engines": {
-    "node": ">=10",
-    "npm": ">=6"
+    "node": ">=10.13",
+    "yarn": ">=1.22.4"
   }
 }
