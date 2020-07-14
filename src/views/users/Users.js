@@ -59,7 +59,11 @@ const Users = () => {
         <Spin tip="Loading..." size="large" spinning={fetching}>
           <CCard>
             <CCardHeader>
-              Users
+              <Row>
+                <Col lg="6">User</Col>
+                <Col lg="6">.col-6</Col>
+              </Row>
+              
             </CCardHeader>
             <CCardBody>
               <Skeleton loading={!data} >
