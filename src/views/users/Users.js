@@ -70,7 +70,6 @@ const Users = () => {
                   />
                 </CCol>
               </CRow>
-              
             </CCardHeader>
             <CCardBody>
               <Skeleton loading={!data} >
