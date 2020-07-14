@@ -12,7 +12,7 @@ import {
   CPagination
 } from '@coreui/react'
 
-import { Spin, Skeleton } from 'antd'
+import { Spin, Skeleton,DatePicker } from 'antd'
 import { format } from 'date-fns'
 
 import { fetchUsers } from '../../redux/userRedux/actions'
@@ -28,7 +28,7 @@ const Users = () => {
 
   const dispatch = useDispatch()
   const history = useHistory()
-
+  const { RangePicker } = DatePicker;
   const { fetching, data } = useSelector(state => state.user)
 
   const [pageSize, setPageSize] = useState(10);
@@ -59,10 +59,17 @@ const Users = () => {
         <Spin tip="Loading..." size="large" spinning={fetching}>
           <CCard>
             <CCardHeader>
-              <Row>
-                <Col lg="6">User</Col>
-                <Col lg="6">.col-6</Col>
-              </Row>
+              <CRow>
+                <CCol lg="6">User</CCol>
+                <CCol lg="6">
+                  <RangePicker
+                  showTime={{ format: 'HH:mm' }}
+                  format="YYYY-MM-DD HH:mm"
+                  // onChange={onChange}
+                  // onOk={onOk}
+                  />
+                </CCol>
+              </CRow>
               
             </CCardHeader>
             <CCardBody>
