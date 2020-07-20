@@ -13,6 +13,7 @@ export default [
     _tag: 'CSidebarNavTitle',
     _children: ['Data Management']
   },
+  // User
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Users',
@@ -23,6 +24,20 @@ export default [
         _tag: 'CSidebarNavItem',
         name: 'Manage Users',
         to: '/users',
+      }
+    ],
+  },
+  // Station
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Stations',
+    route: '/stations',
+    icon: 'cil-user',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Manage Stations',
+        to: '/stations',
       }
     ],
   },

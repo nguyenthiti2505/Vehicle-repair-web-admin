@@ -51,7 +51,6 @@ const Widgets = () => {
         <CCol xs="12" sm="6" lg="3">
           <CWidgetProgress inverse color="danger" variant="inverse" value={95} header="2 TB" text="Lorem ipsum..." footer="Lorem ipsum dolor sit amet enim."/>
         </CCol>
-
       </CRow>
 
       <CRow>

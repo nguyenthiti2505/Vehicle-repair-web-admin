@@ -13,6 +13,8 @@ const Dashboard = React.lazy(() => import("./views/Dashboard/Dashboard"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
 const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
+const Stations = React.lazy(() => import("./views/stations/Stations.js"));
+const Station = React.lazy(() => import("./views/stations/Station.js"));
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
@@ -31,6 +33,8 @@ const routes = [
   { path: "/notifications/toaster", name: "Toaster", component: Toaster },
   { path: "/users", name: "Users", component: Users, exact: true },
   { path: "/users/:id", exact: true, name: "User Details", component: User },
+  { path: "/stations", name: "Stations", component: Stations, exact: true },
+  { path: "/stations/:id", exact: true, name: "Station Details", component: Station },
 ];
 
 export default routes;
