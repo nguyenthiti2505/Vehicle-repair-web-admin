@@ -18,6 +18,9 @@ const Stations = React.lazy(() => import("./views/stations/Stations.js"));
 const Station = React.lazy(() => import("./views/stations/Station.js"));
 // Page 
 
+// Login
+const Login = React.lazy(() => import('./views/pages/login/Login'))
+
 const routes = [
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
@@ -25,6 +28,7 @@ const routes = [
   { path: "/base/forms", name: "Forms", component: BasicForms },
   { path: "/base/switches", name: "Switches", component: Switches },
   { path: "/charts", name: "Charts", component: Charts },
+  { path: "/login", name: "Login", component: Login},
   {
     path: "/notifications",
     name: "Notifications",

@@ -48,11 +48,13 @@ const Stations = () => {
   };
 
   const onChange = (e) => {
-    const fromDate = new Date(e[0]);
-    console.log("onChange -> fromDate", formatDateTime(fromDate))
-    const toDate = new Date(e[1]);
-    console.log("onChange -> toDate", formatDateTime(toDate))
-    dispatch(fetchStations({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
+    if(e){
+      const fromDate = new Date(e[0]);
+      console.log("onChange -> fromDate", formatDateTime(fromDate))
+      const toDate = new Date(e[1]);
+      console.log("onChange -> toDate", formatDateTime(toDate))
+      dispatch(fetchStations({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
+    }
   };
   const formatDateTime = (date) => {
     const theTime = new Date(date);
