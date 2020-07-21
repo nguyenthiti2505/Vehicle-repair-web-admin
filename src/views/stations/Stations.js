@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -14,6 +15,7 @@ import {
 
 import { Spin, Skeleton, DatePicker } from "antd";
 import { format } from "date-fns";
+
 
 import { fetchStations } from "../../redux/stationRedux/actions";
 
@@ -44,7 +46,7 @@ const Stations = () => {
     console.log("pageChange -> newPage", newPage)
     currentPage !== newPage && history.push(`/stations?page=${newPage}`);
   };
-  
+
   const onChange = (e) => {
     const fromDate = new Date(e[0]);
     console.log("onChange -> fromDate", formatDateTime(fromDate))

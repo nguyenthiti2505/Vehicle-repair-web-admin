@@ -32,7 +32,7 @@ export default [
     _tag: 'CSidebarNavDropdown',
     name: 'Stations',
     route: '/stations',
-    icon: 'cil-user',
+    icon: 'cil-settings',
     _children: [
       {
         _tag: 'CSidebarNavItem',

@@ -5,14 +5,20 @@ const Toaster = React.lazy(() =>
 );
 
 const BasicForms = React.lazy(() => import("./views/base/forms/BasicForms"));
-
 const Switches = React.lazy(() => import("./views/base/switches/Switches"));
+// Pages
+const Login = React.lazy(() => import("./views/Pages/Login"));
+const Register = React.lazy(() => import("./views/Pages/Register"));
+const Page404 = React.lazy(() => import("./views/Pages/Page404"));
+const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 
 const Charts = React.lazy(() => import("./views/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/Dashboard/Dashboard"));
 const Alerts = React.lazy(() => import("./views/notifications/alerts/Alerts"));
+// Users
 const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
+// Station
 const Stations = React.lazy(() => import("./views/stations/Stations.js"));
 const Station = React.lazy(() => import("./views/stations/Station.js"));
 

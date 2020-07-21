@@ -91,8 +91,6 @@ const Users = () => {
             <CCardBody>
               <Skeleton loading={!data}>
                 <CDataTable
-                // M thử load một cái coi nà
-                // Load răng hè get về ngahefaf. OK
                   items={data?.sources}
                   fields={[
                     { key: "name", _classes: "font-weight-bold" },
