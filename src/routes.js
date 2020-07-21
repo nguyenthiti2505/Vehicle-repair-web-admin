@@ -16,6 +16,7 @@ const User = React.lazy(() => import("./views/users/User"));
 // Station
 const Stations = React.lazy(() => import("./views/stations/Stations.js"));
 const Station = React.lazy(() => import("./views/stations/Station.js"));
+// Page 
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
