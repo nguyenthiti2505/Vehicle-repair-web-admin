@@ -97,13 +97,15 @@ const Stations = () => {
             </CCardHeader>
             <CCardBody>
               <Skeleton loading={!data}>
-                <CDataTable
+              <CDataTable
                   items={data?.sources}
                   fields={[
                     { key: "stationName", _classes: "font-weight-bold" },
                     "stationOwner",
-                    "createdOn",
-                    "isActive",
+                    "totalOrder",
+                    "totalService",
+                    "totalRevenue",
+                    "createdOn"
                   ]}
                   hover
                   striped
@@ -122,13 +124,6 @@ const Stations = () => {
                   columnFilter
                   onRowClick={(item) => history.push(`/stations/${item.id}`)}
                   scopedSlots={{
-                    isActive: (item) => (
-                      <td>
-                        <CBadge color={getBadge(item.isActive)}>
-                          {item.isActive ? "active" : "banned"}
-                        </CBadge>
-                      </td>
-                    ),
                     createdOn: (item) => (
                       <td>
                         {format(new Date(item.createdOn), "dd-MM-yyyy H:mm")}
@@ -136,18 +131,13 @@ const Stations = () => {
                     ),
                   }}
                 />
-                <CRow>
-                  <CCol lg="9">
-                  </CCol>
-                  <CCol lg="3">
-                    <CPagination
-                      activePage={data?.pageIndex}
-                      onActivePageChange={pageChange}
-                      pages={data?.totalPages}
-                      doubleArrows
-                    />
-                  </CCol>
-                </CRow>
+                <CPagination
+                  activePage={data?.pageIndex}
+                  onActivePageChange={pageChange}
+                  pages={data?.totalPages}
+                  doubleArrows
+                  align="center"
+                />
               </Skeleton>
             </CCardBody>
           </CCard>

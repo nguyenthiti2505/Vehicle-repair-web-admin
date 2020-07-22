@@ -9,24 +9,62 @@ const initialSate = {
 
 export const authReducer = (state = initialSate, action) => {
   switch (action.type) {
-    case Types.FETCH_AUTH_REQUEST:
+    case Types.LOGIN_REQUEST:
       return {
         ...state,
         fetching: true
       }
-    case Types.FETCH_AUTH_SUCCEEDED:
+    case Types.LOGIN_SUCCEEDED:
       return {
         ...state,
         data: action.payload,
         fetching: false
       }
-    case Types.FETCH_AUTH_FAILED:
+    case Types.LOGIN_FAILED:
       return {
         ...state,
         errors: action.payload.errors || [],
         message: action.payload.message || "",
         fetching: false
       }
+
+    case Types.FETCH_PROFILE_REQUEST:
+      return {
+        ...state,
+        fetching: true
+      }
+    case Types.FETCH_PROFILE_SUCCEEDED:
+      return {
+        ...state,
+        data: action.payload,
+        fetching: false
+      }
+    case Types.FETCH_PROFILE_FAILED:
+      return {
+        ...state,
+        errors: action.payload.errors || [],
+        message: action.payload.message || "",
+        fetching: false
+      }
+    
+      case Types.CHANGE_PASSWORD_REQUEST:
+        return {
+          ...state,
+          fetching: true
+        }
+      case Types.CHANGE_PASSWORD_SUCCEEDED:
+        return {
+          ...state,
+          data: action.payload,
+          fetching: false
+        }
+      case Types.CHANGE_PASSWORD_FAILED:
+        return {
+          ...state,
+          errors: action.payload.errors || [],
+          message: action.payload.message || "",
+          fetching: false
+        }
     default:
       return state
   }
