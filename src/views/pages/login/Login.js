@@ -12,11 +12,13 @@ import {
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-  CRow
+  CRow,
+  CLink
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
 const Login = () => {
+  
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -49,7 +51,9 @@ const Login = () => {
                         <CButton color="primary" className="px-4">Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
+                        <CLink to="/register">
+                          <CButton color="link" className="px-0">Forgot password?</CButton>
+                        </CLink>
                       </CCol>
                     </CRow>
                   </CForm>
@@ -58,12 +62,10 @@ const Login = () => {
               <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Sign up</h2>
+                    <h2>ADMIN</h2>
+                    <br></br>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                       labore et dolore magna aliqua.</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
-                    </Link>
                   </div>
                 </CCardBody>
               </CCard>

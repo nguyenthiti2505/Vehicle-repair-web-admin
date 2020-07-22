@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import {
@@ -43,8 +42,9 @@ const Stations = () => {
   const [page, setPage] = useState(currentPage);
 
   const pageChange = (newPage) => {
-    console.log("pageChange -> newPage", newPage)
-    currentPage !== newPage && history.push(`/stations?page=${newPage}`);
+    if(newPage){
+      currentPage !== newPage && history.push(`/stations?page=${newPage}`);
+    }
   };
 
   const onChange = (e) => {
