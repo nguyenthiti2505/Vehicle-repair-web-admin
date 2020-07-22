@@ -53,6 +53,10 @@ const Users = () => {
       console.log("onChange -> toDate", formatDateTime(toDate))
       dispatch(fetchUsers({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
     }
+    else 
+    {
+      dispatch(fetchUsers({ pageIndex: page, pageSize}));
+    }
   };
   const formatDateTime = (date) => {
     const theTime = new Date(date);

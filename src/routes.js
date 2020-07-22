@@ -17,7 +17,6 @@ const User = React.lazy(() => import("./views/users/User"));
 const Stations = React.lazy(() => import("./views/stations/Stations.js"));
 const Station = React.lazy(() => import("./views/stations/Station.js"));
 // Page 
-
 // Login
 const Login = React.lazy(() => import('./views/pages/login/Login'))
 

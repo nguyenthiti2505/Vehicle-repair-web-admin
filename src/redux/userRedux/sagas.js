@@ -12,7 +12,7 @@ function* fetchUersSaga({ payload }) {
     let url = `dashboard/users?offset=${pageIndex || 1}&limit=${pageSize || 10}`
     
     if (fromDate && toDate) {
-      url += `&fromDate=${fromDate}&toDate${toDate}`
+      url += `&fromDate=${fromDate}&toDate=${toDate}`
     }
     const response = yield callApi(url, 'GET', null, token)
     yield put({ type: Types.FETCH_USERS_SUCCEEDED, payload: response.data })

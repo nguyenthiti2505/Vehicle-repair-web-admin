@@ -55,6 +55,10 @@ const Stations = () => {
       console.log("onChange -> toDate", formatDateTime(toDate))
       dispatch(fetchStations({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
     }
+    else 
+    {
+      dispatch(fetchStations({ pageIndex: page, pageSize}));
+    }
   };
   const formatDateTime = (date) => {
     const theTime = new Date(date);
