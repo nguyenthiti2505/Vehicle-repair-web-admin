@@ -9,7 +9,6 @@ function* fetchStationsSaga({ payload }) {
     let url = `dashboard/stations?offset=${pageIndex || 1}&limit=${pageSize || 10}`
     if (fromDate && toDate) {
       url += `&fromDate=${fromDate}&toDate=${toDate}`
-      
     }
     const response = yield callApi(url, 'GET', null, token)
     yield put({ type: Types.FETCH_STATIONS_SUCCEEDED, payload: response.data })

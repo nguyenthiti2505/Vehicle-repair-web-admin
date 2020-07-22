@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CCol, CRow, CLink } from '@coreui/react'
 import { callApi } from '../../utils/apiCaller'
 import { format } from 'date-fns';
 import { Spin, Skeleton } from 'antd';
@@ -11,29 +11,30 @@ const Station = ({ match }) => {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([])
 
-  const fetchStationOrders = async () => {
-    try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTE1OTgxMTEwIiwianRpIjoiNWE2Y2FlMzAtZmUyOS00MDZhLWJlYTgtZjM0MTFlODcxNzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIwOTE1OTgxMTEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXIgQWRtaW4iLCJleHAiOjE1OTU1ODI4MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSJ9.xbHaI2XcaoHPDSh24NrJwe_c9WY9Cv8ZLJA7j6CNsKA"
-      const response = await callApi(`orders/stations/${id}`, "GET", null, token)
-      setOrders(response.data.sources)
-    } catch (e) {
-      console.log("fetchOrders -> e.response", e.response)
-    }
-    setLoading(false)
-  }
-
-  const fetchStation = async () => {
-    try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTE1OTgxMTEwIiwianRpIjoiNWE2Y2FlMzAtZmUyOS00MDZhLWJlYTgtZjM0MTFlODcxNzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIwOTE1OTgxMTEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXIgQWRtaW4iLCJleHAiOjE1OTU1ODI4MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSJ9.xbHaI2XcaoHPDSh24NrJwe_c9WY9Cv8ZLJA7j6CNsKA"
-      const response = await callApi(`stations/${id}`, "GET", null, token)
-      setStation(response.data)
-    } catch (e) {
-      console.log("fetchOrders -> e.response", e.response)
-    }
-    setLoading(false)
-  }
-
   useEffect(() => {
+    
+    const fetchStationOrders = async () => {
+      try {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTE1OTgxMTEwIiwianRpIjoiNWE2Y2FlMzAtZmUyOS00MDZhLWJlYTgtZjM0MTFlODcxNzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIwOTE1OTgxMTEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXIgQWRtaW4iLCJleHAiOjE1OTU1ODI4MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSJ9.xbHaI2XcaoHPDSh24NrJwe_c9WY9Cv8ZLJA7j6CNsKA"
+        const response = await callApi(`orders/stations/${id}`, "GET", null, token)
+        setOrders(response.data.sources)
+      } catch (e) {
+        console.log("fetchOrders -> e.response", e.response)
+      }
+      setLoading(false)
+    }
+
+    const fetchStation = async () => {
+      try {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTE1OTgxMTEwIiwianRpIjoiNWE2Y2FlMzAtZmUyOS00MDZhLWJlYTgtZjM0MTFlODcxNzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIwOTE1OTgxMTEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXIgQWRtaW4iLCJleHAiOjE1OTU1ODI4MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSJ9.xbHaI2XcaoHPDSh24NrJwe_c9WY9Cv8ZLJA7j6CNsKA"
+        const response = await callApi(`stations/${id}`, "GET", null, token)
+        setStation(response.data)
+      } catch (e) {
+        console.log("fetchOrders -> e.response", e.response)
+      }
+      setLoading(false)
+    }
+
     fetchStation()
     fetchStationOrders()
   }, [id])
@@ -65,7 +66,11 @@ const Station = ({ match }) => {
                       </tr>
                       <tr>
                         <td>Address: </td>
-                        <td><a target="_blank" href={`https://www.google.com/maps/place/${station.latitude},${station.longitude}`}>{station.address}</a></td>
+                        <td>
+                          <CLink to={`https://www.google.com/maps/place/${station.latitude},${station.longitude}`} rel="noopener norefferer" target="_blank">
+                            {station.address}
+                          </CLink>
+                        </td>
                       </tr>
                       <tr>
                         <td>Vehicle: </td>

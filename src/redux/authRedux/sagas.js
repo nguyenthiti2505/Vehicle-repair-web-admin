@@ -1,20 +1,40 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import * as Types from './types'
 import { callApi } from '../../utils/apiCaller'
+// import { fetchProfileRequest } from './actions'
 
-function* fetchLoginSaga({ payload }) {
+function* loginAsync({ payload }) {
   try {
-    const { pageIndex, pageSize} = payload  
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTE1OTgxMTEwIiwianRpIjoiNWE2Y2FlMzAtZmUyOS00MDZhLWJlYTgtZjM0MTFlODcxNzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIwOTE1OTgxMTEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3VwZXIgQWRtaW4iLCJleHAiOjE1OTU1ODI4MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzMzMSJ9.xbHaI2XcaoHPDSh24NrJwe_c9WY9Cv8ZLJA7j6CNsKA"
-    let url = `login?offset=${pageIndex || 1}&limit=${pageSize || 10}`
-    const response = yield callApi(url, 'GET', null, token)
-    yield put({ type: Types.FETCH_LOGIN_SUCCEEDED, payload: response.data })
+    const { phoneNumber, password } = payload
+    const response = yield callApi('account/login', 'POST', { phoneNumber, password })
+    const token = response.data
+    localStorage.setItem("_token", token)
+    yield put({ type: Types.LOGIN_SUCCEEDED, payload: { token } })
+    // yield put(fetchProfileRequest())
   } catch (error) {
-   
-    yield put({ type: Types.FETCH_AUTH_FAILED, payload: {} })
+    yield put({ type: Types.LOGIN_FAILED, payload: { message: error?.response?.data || "Có lỗi xảy ra, vui lòng thử lại" } })
+  }
+}
+
+function* fetchProfileAsync() {
+  try {
+    const token = localStorage.getItem("_token")
+    if (token) {
+      const response = yield callApi(`account/me`, 'GET', null, token)
+      const user = response.data
+      localStorage.setItem("_user", JSON.stringify(user))
+      yield put({ type: Types.FETCH_PROFILE_SUCCEEDED, payload: { user } })
+    } else {
+      yield put({ type: Types.FETCH_PROFILE_FAILED, payload: { message: "Token not found or expried" } })
+    }
+  } catch (error) {
+    localStorage.removeItem("_token")
+    localStorage.removeItem("_user")
+    yield put({ type: Types.FETCH_PROFILE_FAILED, payload: { message: "Token not found or expried" } })
   }
 }
 
 export const watchAuthSaga = [
-  takeLatest(Types.FETCH_AUTH_REQUEST, fetchLoginSaga)
+  takeLatest(Types.LOGIN_REQUEST, loginAsync),
+  takeLatest(Types.FETCH_PROFILE_REQUEST, fetchProfileAsync)
 ]
