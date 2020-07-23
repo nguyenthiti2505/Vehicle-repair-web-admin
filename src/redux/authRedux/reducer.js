@@ -44,6 +44,10 @@ export const authReducer = (state = initialSate, action) => {
         message: action.payload.message,
         loading: false
       }
+    case Types.LOGOUT:
+      return {
+        ...initialSate
+      }
     default:
       return state
   }

@@ -20,3 +20,10 @@ export function changePasswordRequest(prams = {}) {
     payload: prams
   }
 }
+
+export function logoutRequest(prams = {}) {
+  return {
+    type: Types.LOGOUT,
+    payload: prams
+  }
+}
