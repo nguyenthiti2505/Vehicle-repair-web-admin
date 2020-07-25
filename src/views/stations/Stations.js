@@ -15,7 +15,8 @@ import {
 import { Spin, Skeleton, DatePicker } from "antd";
 import { format } from "date-fns";
 
-import { fetchUsers } from "../../redux/userRedux/actions";
+
+import { fetchStations } from "../../redux/stationRedux/actions";
 
 const getBadge = (status) => {
   switch (status) {
@@ -26,11 +27,11 @@ const getBadge = (status) => {
   }
 };
 
-const Users = () => {
+const Stations = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { RangePicker } = DatePicker;
-  const { fetching, data } = useSelector((state) => state.user);
+  const { fetching, data } = useSelector((state) => state.station);
 
   const [pageSize, setPageSize] = useState(10);
 
@@ -42,7 +43,7 @@ const Users = () => {
 
   const pageChange = (newPage) => {
     if(newPage){
-      currentPage !== newPage && history.push(`/users?page=${newPage}`);
+      currentPage !== newPage && history.push(`/stations?page=${newPage}`);
     }
   };
 
@@ -52,11 +53,11 @@ const Users = () => {
       console.log("onChange -> fromDate", formatDateTime(fromDate))
       const toDate = new Date(e[1]);
       console.log("onChange -> toDate", formatDateTime(toDate))
-      dispatch(fetchUsers({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
+      dispatch(fetchStations({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
     }
     else 
     {
-      dispatch(fetchUsers({ pageIndex: page, pageSize}));
+      dispatch(fetchStations({ pageIndex: page, pageSize}));
     }
   };
   const formatDateTime = (date) => {
@@ -69,12 +70,12 @@ const Users = () => {
 
   const paginationChange = (pageSize) => {
     setPageSize(pageSize);
-    dispatch(fetchUsers({ pageIndex: page, pageSize }));
+    dispatch(fetchStations({ pageIndex: page, pageSize }));
   };
 
   useEffect(() => {
     currentPage !== page && setPage(currentPage);
-    dispatch(fetchUsers({ pageIndex: page, pageSize }));
+    dispatch(fetchStations({ pageIndex: page, pageSize }));
   }, [currentPage, page, dispatch, history]);
 
   return (
@@ -84,28 +85,27 @@ const Users = () => {
           <CCard>
             <CCardHeader>
               <CRow>
-                <CCol lg="6">User</CCol>
+                <CCol lg="6">Stations</CCol>
                 <CCol lg="6">
                   <RangePicker
                     format="DD-MM-YYYY HH:mm"
                     onChange={onChange}
                     activePage={data?.pageIndex}
-                    // onOk={onOk}
                   />
                 </CCol>
               </CRow>
             </CCardHeader>
             <CCardBody>
               <Skeleton loading={!data}>
-                <CDataTable
+              <CDataTable
                   items={data?.sources}
                   fields={[
-                    { key: "name", _classes: "font-weight-bold" },
-                    "email",
-                    "phoneNumber",
-                    "roles",
-                    "createdOn",
-                    "isActive",
+                    { key: "stationName", _classes: "font-weight-bold" },
+                    "stationOwner",
+                    "totalOrder",
+                    "totalService",
+                    "totalRevenue",
+                    "createdOn"
                   ]}
                   hover
                   striped
@@ -122,16 +122,8 @@ const Users = () => {
                     placeholder: "Type anything to search",
                   }}
                   columnFilter
-                  onRowClick={(item) => history.push(`/users/${item.id}`)}
+                  onRowClick={(item) => history.push(`/stations/${item.id}`)}
                   scopedSlots={{
-                    email: (item) => <td>{item.email || ""}</td>,
-                    isActive: (item) => (
-                      <td>
-                        <CBadge color={getBadge(item.isActive)}>
-                          {item.isActive ? "active" : "banned"}
-                        </CBadge>
-                      </td>
-                    ),
                     createdOn: (item) => (
                       <td>
                         {format(new Date(item.createdOn), "dd-MM-yyyy H:mm")}
@@ -139,18 +131,13 @@ const Users = () => {
                     ),
                   }}
                 />
-                <CRow>
-                  <CCol lg="9">
-                  </CCol>
-                  <CCol lg="3">
-                    <CPagination
-                      activePage={data?.pageIndex}
-                      onActivePageChange={pageChange}
-                      pages={data?.totalPages}
-                      doubleArrows
-                    />
-                  </CCol>
-                </CRow>
+                <CPagination
+                  activePage={data?.pageIndex}
+                  onActivePageChange={pageChange}
+                  pages={data?.totalPages}
+                  doubleArrows
+                  align="center"
+                />
               </Skeleton>
             </CCardBody>
           </CCard>
@@ -160,4 +147,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Stations;
