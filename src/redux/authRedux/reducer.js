@@ -1,9 +1,9 @@
 import * as Types from './types'
 
 const initialSate = {
-  fetching: false,
-  data: null,
-  errors: [],
+  loading: false,
+  token: "",
+  user: null,
   message: ''
 }
 
@@ -11,60 +11,43 @@ export const authReducer = (state = initialSate, action) => {
   switch (action.type) {
     case Types.LOGIN_REQUEST:
       return {
-        ...state,
-        fetching: true
+        ...initialSate,
+        loading: true
       }
     case Types.LOGIN_SUCCEEDED:
       return {
-        ...state,
-        data: action.payload,
-        fetching: false
+        ...initialSate,
+        token: action.payload.token,
+        loading: false
       }
     case Types.LOGIN_FAILED:
       return {
-        ...state,
-        errors: action.payload.errors || [],
-        message: action.payload.message || "",
-        fetching: false
+        ...initialSate,
+        message: action.payload.message,
+        loading: false
       }
 
     case Types.FETCH_PROFILE_REQUEST:
       return {
         ...state,
-        fetching: true
+        loading: true
       }
     case Types.FETCH_PROFILE_SUCCEEDED:
       return {
         ...state,
-        data: action.payload,
-        fetching: false
+        user: action.payload.user,
+        loading: false
       }
     case Types.FETCH_PROFILE_FAILED:
       return {
-        ...state,
-        errors: action.payload.errors || [],
-        message: action.payload.message || "",
-        fetching: false
+        ...initialSate,
+        message: action.payload.message,
+        loading: false
       }
-    
-      case Types.CHANGE_PASSWORD_REQUEST:
-        return {
-          ...state,
-          fetching: true
-        }
-      case Types.CHANGE_PASSWORD_SUCCEEDED:
-        return {
-          ...state,
-          data: action.payload,
-          fetching: false
-        }
-      case Types.CHANGE_PASSWORD_FAILED:
-        return {
-          ...state,
-          errors: action.payload.errors || [],
-          message: action.payload.message || "",
-          fetching: false
-        }
+    case Types.LOGOUT:
+      return {
+        ...initialSate
+      }
     default:
       return state
   }

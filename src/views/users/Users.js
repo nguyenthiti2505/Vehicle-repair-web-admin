@@ -26,10 +26,14 @@ const getBadge = (status) => {
   }
 };
 
+const { RangePicker } = DatePicker;
+
 const Users = () => {
+
   const dispatch = useDispatch();
+
   const history = useHistory();
-  const { RangePicker } = DatePicker;
+
   const { fetching, data } = useSelector((state) => state.user);
 
   const [pageSize, setPageSize] = useState(10);
@@ -41,24 +45,21 @@ const Users = () => {
   const [page, setPage] = useState(currentPage);
 
   const pageChange = (newPage) => {
-    if(newPage){
+    if (newPage) {
       currentPage !== newPage && history.push(`/users?page=${newPage}`);
     }
   };
 
   const onChange = (e) => {
-    if(e){
+    if (e) {
       const fromDate = new Date(e[0]);
-      console.log("onChange -> fromDate", formatDateTime(fromDate))
       const toDate = new Date(e[1]);
-      console.log("onChange -> toDate", formatDateTime(toDate))
       dispatch(fetchUsers({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
-    }
-    else 
-    {
-      dispatch(fetchUsers({ pageIndex: page, pageSize}));
+    } else {
+      dispatch(fetchUsers({ pageIndex: page, pageSize }));
     }
   };
+
   const formatDateTime = (date) => {
     const theTime = new Date(date);
     const day = theTime.getDate();
@@ -75,7 +76,7 @@ const Users = () => {
   useEffect(() => {
     currentPage !== page && setPage(currentPage);
     dispatch(fetchUsers({ pageIndex: page, pageSize }));
-  }, [currentPage, page, dispatch, history]);
+  }, [currentPage, pageSize, page, dispatch, history]);
 
   return (
     <CRow>
@@ -90,7 +91,7 @@ const Users = () => {
                     format="DD-MM-YYYY HH:mm"
                     onChange={onChange}
                     activePage={data?.pageIndex}
-                    // onOk={onOk}
+                  // onOk={onOk}
                   />
                 </CCol>
               </CRow>
