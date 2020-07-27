@@ -60,16 +60,15 @@ const WidgetsDropdown = () => {
     <CRow className="widgets">
       <CCol sm="12" lg="4" spinning={fetching}>
         <CWidgetDropdown
-          color="gradient-primary"
+          color="gradient-success"
           header={data?.totalCount}
           text= "Users Online"
           >
         <CImg
           align="center"
-          width="160px"
           src= "https://www.iconsdb.com/icons/preview/white/conference-xxl.png"
           fluid
-          className="mb-2"
+          className="mb-2 image-card"
         ></CImg>
         </CWidgetDropdown>
       </CCol>
@@ -82,10 +81,9 @@ const WidgetsDropdown = () => {
         >
         <CImg
           align="center"
-          width="160px"
           src= "https://www.iconsdb.com/icons/preview/white/train-2-xxl.png"
           fluid
-          className="mb-2"
+          className="mb-2 image-card"
         ></CImg>
         </CWidgetDropdown>
       </CCol>
@@ -98,10 +96,9 @@ const WidgetsDropdown = () => {
         >
         <CImg
           align="center"
-          width="160px"
           src= "https://www.iconsdb.com/icons/preview/white/purchase-order-xxl.png"
           fluid
-          className="mb-2"
+          className="mb-2 image-card"
       ></CImg>
         </CWidgetDropdown>
       </CCol>

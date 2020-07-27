@@ -47,7 +47,7 @@ const Dashboard = () => {
                       active={value === 'Week'}
                     >
                       {value}
-                    </CButton>
+                    </CButton>                    
                   ))
                 }
               </CButtonGroup>
