@@ -29,7 +29,6 @@ const getBadge = (status) => {
 const { RangePicker } = DatePicker;
 
 const Users = () => {
-
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -54,7 +53,14 @@ const Users = () => {
     if (e) {
       const fromDate = new Date(e[0]);
       const toDate = new Date(e[1]);
-      dispatch(fetchUsers({ pageIndex: page, pageSize, fromDate: formatDateTime(fromDate), toDate: formatDateTime(toDate) }));
+      dispatch(
+        fetchUsers({
+          pageIndex: page,
+          pageSize,
+          fromDate: formatDateTime(fromDate),
+          toDate: formatDateTime(toDate),
+        })
+      );
     } else {
       dispatch(fetchUsers({ pageIndex: page, pageSize }));
     }
@@ -91,7 +97,7 @@ const Users = () => {
                     format="DD-MM-YYYY HH:mm"
                     onChange={onChange}
                     activePage={data?.pageIndex}
-                  // onOk={onOk}
+                    // onOk={onOk}
                   />
                 </CCol>
               </CRow>
@@ -141,8 +147,7 @@ const Users = () => {
                   }}
                 />
                 <CRow>
-                  <CCol lg="9">
-                  </CCol>
+                  <CCol lg="9"></CCol>
                   <CCol lg="3">
                     <CPagination
                       activePage={data?.pageIndex}
