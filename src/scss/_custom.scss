@@ -4,3 +4,12 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     -webkit-appearance: none; 
      margin: 0; 
 }
+// Dashboard
+.dashboard-chart {
+    h4#traffic {
+        color: $light-primary;
+    }
+    .date-traffic {
+        font-size: 25px;
+    }
+}
