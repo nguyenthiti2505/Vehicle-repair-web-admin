@@ -28,7 +28,7 @@ const Dashboard = () => {
         <CCardBody>
           <CRow>
             <CCol sm="4">
-              <h4 id="traffic" className="font-weight-bold card-title mb-0">Traffic last 7 days</h4>
+              <h4 id="traffic" className="font-weight-bold card-title mb-0">Traffic 7 days</h4>
             </CCol>
             <CCol sm="4">
               <div className="date-traffic font-weight-bold text-center">{new Date().toDateString()}</div>
