@@ -1,17 +1,17 @@
 import React, { lazy } from "react";
 
 import {
-  CBadge,
+  // CBadge,
   CButton,
   CButtonGroup,
   CCard,
   CCardBody,
-  CCardFooter,
-  CCardHeader,
+  // CCardFooter,
+  // CCardHeader,
   CCol,
-  CProgress,
+  // CProgress,
   CRow,
-  CCallout,
+  // CCallout,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 

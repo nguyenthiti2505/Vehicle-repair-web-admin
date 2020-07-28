@@ -191,5 +191,4 @@ const MainChartExample = attributes => {
   )
 }
 
-
 export default MainChartExample
