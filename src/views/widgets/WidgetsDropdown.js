@@ -6,15 +6,8 @@ import {
   CWidgetDropdown,
   CRow,
   CCol,
-  CDropdown,
-  CDropdownMenu,
-  CDropdownItem,
-  CDropdownToggle,
   CImg,
 } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import ChartLineSimple from "../charts/ChartLineSimple";
-import ChartBarSimple from "../charts/ChartBarSimple";
 
 import { fetchUsers } from "../../redux/userRedux/actions";
 import { fetchStations } from "../../redux/stationRedux/actions";
