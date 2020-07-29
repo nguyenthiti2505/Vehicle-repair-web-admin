@@ -46,19 +46,29 @@ const MainChartExample = attributes => {
   const getDayOfWeek = (date = 0) => {
     switch (date) {
       case 1:
-        return "Monday"
+        return "Jan"
       case 2:
-        return "Tuesday"
+        return "Feb"
       case 3:
-        return "Wednesday"
+        return "Mar"
       case 4:
-        return "Thursday"
+        return "Apr"
       case 5:
-        return "Friday"
+        return "May"
       case 6:
-        return "Saturday"
+        return "Jun"
+      case 7:
+        return "Jul"
+      case 8:
+        return "Aug"
+      case 9:
+        return "Sep"
+      case 10:
+        return "Oct"
+      case 11:
+        return "Nov"
       default:
-        return "Sunday"
+        return "Dec"
     }
   }
 
@@ -73,9 +83,9 @@ const MainChartExample = attributes => {
 
   const [loading, setLoading] = useState(true)
 
-  const [days] = useState(7)
+  const [days] = useState(12)
 
-  const [chartHeight] = useState(50)
+  const [chartHeight] = useState(500)
 
   const [startDate] = useState(subDays(new Date(), days))
 
