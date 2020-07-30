@@ -91,13 +91,12 @@ const Users = () => {
           <CCard>
             <CCardHeader>
               <CRow>
-                <CCol lg="6">User</CCol>
-                <CCol lg="6">
+                <CCol lg="9"></CCol>
+                <CCol lg="3">
                   <RangePicker
                     format="DD-MM-YYYY HH:mm"
                     onChange={onChange}
                     activePage={data?.pageIndex}
-                    // onOk={onOk}
                   />
                 </CCol>
               </CRow>
@@ -114,6 +113,7 @@ const Users = () => {
                     "createdOn",
                     "isActive",
                   ]}
+                  
                   hover
                   striped
                   itemsPerPageSelect={{
@@ -122,6 +122,7 @@ const Users = () => {
                   }}
                   itemsPerPage={pageSize}
                   onPaginationChange={paginationChange}
+                  
                   clickableRows
                   sorter
                   tableFilter={{
@@ -147,7 +148,7 @@ const Users = () => {
                   }}
                 />
                 <CRow>
-                  <CCol lg="9"></CCol>
+                  <CCol lg="9">Tổng : {data?.totalCount}</CCol>
                   <CCol lg="3">
                     <CPagination
                       activePage={data?.pageIndex}

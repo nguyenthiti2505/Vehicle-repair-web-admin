@@ -59,7 +59,7 @@ const WidgetsDropdown = () => {
           >
         <CImg
           align="center"
-          src= "https://www.iconsdb.com/icons/preview/white/conference-xxl.png"
+          src={'dashboard/user.png'}
           fluid
           className="mb-2 image-card"
         ></CImg>
@@ -74,7 +74,7 @@ const WidgetsDropdown = () => {
         >
         <CImg
           align="center"
-          src= "https://www.iconsdb.com/icons/preview/white/train-2-xxl.png"
+          src={'dashboard/station.png'}
           fluid
           className="mb-2 image-card"
         ></CImg>
@@ -89,7 +89,7 @@ const WidgetsDropdown = () => {
         >
         <CImg
           align="center"
-          src= "https://www.iconsdb.com/icons/preview/white/purchase-order-xxl.png"
+          src={'dashboard/order.png'}
           fluid
           className="mb-2 image-card"
       ></CImg>
