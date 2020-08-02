@@ -15,7 +15,6 @@ function* fetchUersSaga({ payload }) {
     const response = yield callApi(url, "GET", null, token);
     yield put({ type: Types.FETCH_USERS_SUCCEEDED, payload: response.data });
   } catch (error) {
-    console.log("function*fetchUersSaga -> error", error);
     yield put({ type: Types.FETCH_USERS_FAILED, payload: {} });
   }
 }

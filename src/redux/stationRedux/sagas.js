@@ -16,7 +16,6 @@ function* fetchStationsSaga({ payload }) {
     const response = yield callApi(url, "GET", null, token);
     yield put({ type: Types.FETCH_STATIONS_SUCCEEDED, payload: response.data });
   } catch (error) {
-    console.log("function*fetchStationsSaga -> error", error);
     yield put({ type: Types.FETCH_STATIONS_FAILED, payload: {} });
   }
 }
