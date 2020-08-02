@@ -5,13 +5,19 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
      margin: 0; 
 }
 // Dashboard
-.dashboard-chart {
+.chart {
     h4#traffic {
         color: $light-primary;
     }
     .date-traffic {
         font-size: 25px;
     }
+}
+
+// Chart
+.chart-title {
+    color: $light-primary;
+    margin: 20px;
 }
 
 // widgets

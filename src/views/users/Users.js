@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import {
   CBadge,
   CCard,
@@ -10,6 +11,8 @@ import {
   CDataTable,
   CRow,
   CPagination,
+  CButton,
+  CLink,
 } from "@coreui/react";
 
 import { Spin, Skeleton, DatePicker } from "antd";
@@ -91,7 +94,11 @@ const Users = () => {
           <CCard>
             <CCardHeader>
               <CRow>
-                <CCol lg="9"></CCol>
+                <CCol lg="9">
+                <Link to="/form">
+                    <CButton className="btn btn-success">Add</CButton>
+                  </Link>
+                </CCol>
                 <CCol lg="3">
                   <RangePicker
                     format="DD-MM-YYYY HH:mm"

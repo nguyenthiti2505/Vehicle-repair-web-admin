@@ -1,4 +1,4 @@
-import React from 'react'
+import React from './node_modules/react'
 import {
   CButton,
   CCard,
@@ -12,8 +12,8 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from './node_modules/@coreui/react'
+import CIcon from './node_modules/@coreui/icons-react'
 
 const formAdd = () => {
   return (

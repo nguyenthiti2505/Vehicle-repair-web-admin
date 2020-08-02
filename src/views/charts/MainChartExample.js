@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils/src'
 import { callApi } from '../../utils/apiCaller'
-import { getDay, subDays, format } from 'date-fns'
-import { Spin } from 'antd'
+import { Spin, DatePicker } from 'antd'
+import { CCard, CCardBody, CRow, CCol, CButton, CButtonGroup } from '@coreui/react'
+import { format } from "date-fns"
+
+const { RangePicker } = DatePicker;
 
 const brandSuccess = getStyle('success') || '#4dbd74'
 const brandInfo = getStyle('info') || '#20a8d8'
@@ -11,106 +14,41 @@ const brandDanger = getStyle('danger') || '#f86c6b'
 
 const MainChartExample = attributes => {
 
-  // 1
-  const getAndSetOrderData = (orders = []) => {
-    let data = []
-    for (let i = 0; i < days; i++) {
-      const date = subDays(new Date(), i).setHours(0, 0, 0, 0)
-      data.push(orders.filter(o => new Date(o.createdOn).setHours(0, 0, 0, 0) === date).length)
-    }
-    setOrderData(data.reverse())
-  }
-
-  // 2
-  const getAndSetUserData = (users = []) => {
-    let data = []
-    for (let i = 0; i < days; i++) {
-      const date = subDays(new Date(), i).setHours(0, 0, 0, 0)
-      data.push(users.filter(u => new Date(u.createdOn).setHours(0, 0, 0, 0) === date).length)
-    }
-    setUserData(data.reverse())
-  }
-
-  // 3
-  const getAndSetStationData = (stations = []) => {
-    let data = []
-    for (let i = 0; i < days; i++) {
-      const date = subDays(new Date(), i).setHours(0, 0, 0, 0)
-      data.push(stations.filter(s => new Date(s.createdOn).setHours(0, 0, 0, 0) === date).length)
-    }
-    setStationData(data.reverse())
-  }
-
-  // Hàm 1, 2, 3 có thể customize lại thành 1 hàm
-
-  const getDayOfWeek = (date = 0) => {
-    switch (date) {
-      case 1:
-        return "Monday"
-      case 2:
-        return "Tuesday"
-      case 3:
-        return "Wednesday"
-      case 4:
-        return "Thursday"
-      case 5:
-        return "Friday"
-      case 6:
-        return "Saturday"
-      default:
-        return "Sunday"
-    }
-  }
-
-  const getAndSetLabels = () => {
-    let labels = []
-    for (let i = 0; i < days; i++) {
-      const date = getDay(subDays(new Date(), i))
-      labels.push(getDayOfWeek(date))
-    }
-    setLabels(labels.reverse())
-  }
-
   const [loading, setLoading] = useState(true)
 
-  const [days] = useState(7)
+  const [chartType, setChartType] = useState("Range")
 
-  const [chartHeight] = useState(50)
+  const [chartData, setChartData] = useState()
 
-  const [startDate] = useState(subDays(new Date(), days))
+  const onChangeDate = (date, dateString) => {
+    if (dateString) {
+      fetchChartData({ chartType, fromDate: format(new Date(dateString), "MM-dd-yyyy") })
+    }
+  }
 
-  const [orderData, setOrderData] = useState([])
+  const onChangeRange = (range) => {
+    if (range) {
+      const fromDate = format(new Date(range[0]), "MM-dd-yyyy")
+      const toDate = format(new Date(range[1]), "MM-dd-yyyy")
+      fetchChartData({ chartType, fromDate, toDate })
+    }
+  }
 
-  const [userData, setUserData] = useState([])
-
-  const [stationData, setStationData] = useState([])
-
-  const [labels, setLabels] = useState([])
+  const fetchChartData = async (params = {}) => {
+    setLoading(true)
+    const { chartType, fromDate, toDate } = params
+    const token = localStorage.getItem("_token")
+    try {
+      const response = await callApi(`dashboard/chart?chartType=${chartType || "Range"}&fromDate=${fromDate}&toDate=${toDate}`, "GET", null, token)
+      setChartData(response.data.data)
+    } catch (error) {
+      console.log("fetchChartData -> error", error)
+    }
+    setLoading(false)
+  }
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      const token = localStorage.getItem("_token")
-      const response = await callApi(`dashboard/orders?pageSize=1000&fromDate=${format(startDate, "MM-dd-yyyy")}`, "GET", null, token)
-      const orders = response.data.sources
-      getAndSetOrderData(orders)
-    }
-    const fetchUsers = async () => {
-      const token = localStorage.getItem("_token")
-      const response = await callApi(`dashboard/users?pageSize=1000&fromDate=${format(startDate, "MM-dd-yyyy")}`, "GET", null, token)
-      const users = response.data.sources
-      getAndSetUserData(users)
-    }
-    const fetchStations = async () => {
-      const token = localStorage.getItem("_token")
-      const response = await callApi(`dashboard/stations?pageSize=1000&fromDate=${format(startDate, "MM-dd-yyyy")}`, "GET", null, token)
-      const stations = response.data.sources
-      getAndSetStationData(stations)
-      setLoading(false)
-    }
-    getAndSetLabels()
-    fetchOrders()
-    fetchUsers()
-    fetchStations()
+    fetchChartData()
   }, [])
 
   const defaultDatasets = (() => {
@@ -121,7 +59,7 @@ const MainChartExample = attributes => {
         borderColor: brandInfo,
         pointHoverBackgroundColor: brandInfo,
         borderWidth: 2,
-        data: orderData
+        data: chartData?.orderData || []
       },
       {
         label: 'New Users',
@@ -129,7 +67,7 @@ const MainChartExample = attributes => {
         borderColor: brandSuccess,
         pointHoverBackgroundColor: brandSuccess,
         borderWidth: 2,
-        data: userData
+        data: chartData?.userData || []
       },
       {
         label: 'New Stations',
@@ -137,7 +75,7 @@ const MainChartExample = attributes => {
         borderColor: brandDanger,
         pointHoverBackgroundColor: brandDanger,
         borderWidth: 2,
-        data: stationData
+        data: chartData?.stationData || []
       }
     ]
   })()
@@ -158,8 +96,8 @@ const MainChartExample = attributes => {
           ticks: {
             beginAtZero: true,
             maxTicksLimit: 5,
-            stepSize: Math.ceil(chartHeight / 5),
-            max: chartHeight
+            stepSize: Math.ceil(10),
+            max: chartData?.chartHeight || 50
           },
           gridLines: {
             display: true
@@ -180,14 +118,47 @@ const MainChartExample = attributes => {
 
   // render
   return (
-    <Spin spinning={loading}>
-      <CChartLine
-        {...attributes}
-        datasets={defaultDatasets}
-        options={defaultOptions}
-        labels={labels}
-      />
-    </Spin>
+    <CCard>
+      <CCardBody>
+        <CRow className="chart">
+          <CCol sm="4">
+            <h4 id="traffic" className="card-title mb-0">Traffic</h4>
+            <div className="small text-muted">{chartData && `From ${chartData?.fromDate} to ${chartData?.toDate}`}</div>
+          </CCol>
+          <CCol sm="8" className="d-none d-md-block">
+            <CButtonGroup className="float-right">
+              {
+                ['Range', 'Month', 'Year'].map(value => (
+                  <CButton
+                    color="outline-secondary"
+                    key={value}
+                    className="mx-0"
+                    onClick={() => setChartType(value)}
+                    active={value === chartType}
+                  >
+                    {value}
+                  </CButton>
+                ))
+              }
+            </CButtonGroup>
+            <div className="float-right mr-3">
+              {chartType === "Range" ?
+                <RangePicker format="MM-DD-yyyy" disabledDate={date => date >= new Date()} onChange={onChangeRange} /> :
+                <DatePicker disabledDate={date => date >= new Date()} onChange={onChangeDate} picker={chartType.toLowerCase()} />
+              }
+            </div>
+          </CCol>
+        </CRow>
+        <Spin spinning={loading}>
+          <CChartLine
+            {...attributes}
+            datasets={defaultDatasets}
+            options={defaultOptions}
+            labels={chartData?.labels || []}
+          />
+        </Spin>
+      </CCardBody>
+    </CCard>
   )
 }
 
