@@ -9,6 +9,7 @@ const Stations = React.lazy(() => import("./views/stations/Stations.js"));
 const Station = React.lazy(() => import("./views/stations/Station.js"));
 
 const Orders = React.lazy(() => import("./views/orders/Orders.js"));
+const Order = React.lazy(() => import("./views/orders/Order.js"));
 
 const routes = [
   { path: "/", exact: true, name: "Home" },
@@ -23,6 +24,12 @@ const routes = [
     component: Station,
   },
   { path: "/orders", name: "Orders", component: Orders, exact: true },
+  {
+    path: "/orders/:id",
+    exact: true,
+    name: "Order Details",
+    component: Order,
+  },
 ];
 
 export default routes;
