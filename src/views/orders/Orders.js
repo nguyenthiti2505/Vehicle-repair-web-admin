@@ -98,6 +98,7 @@ const Orders = () => {
                     { key: "customerName", _classes: "font-weight-bold" },
                     "customerPhone",
                     "totalPrice",
+                    "status",
                     "createdOn",
                   ]}
                   hover

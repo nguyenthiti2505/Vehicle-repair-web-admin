@@ -55,7 +55,7 @@ const Order = ({ match }) => {
                         <td>{order.station.name}</td>
                       </tr>
                       <tr>
-                        <td>Address: </td>
+                        <td>Station Address: </td>
                         <td>
                           <CLink
                             to={`https://www.google.com/maps/place/${order.latitude},${order.longitude}`}
