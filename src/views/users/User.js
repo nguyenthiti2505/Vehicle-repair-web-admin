@@ -7,19 +7,15 @@ import { callApi } from "../../utils/apiCaller";
 
 const User = ({ match }) => {
   const [id] = useState(match.params.id);
-  const [userData, setUser] = useState(10);
 
   const user = useSelector((state) =>
     state.user.data.sources.find((u) => u.id === match.params.id)
   );
-
-  useEffect(() => {
-    setUser(user);
-  })
+  const [userData, setUser] = useState(user);
 
   const handleChangeBannedUser = async () => {
     try {
-      const isActive = (user?.isActive) ? false : true;
+      const isActive = (userData?.isActive) ? false : true;
       const token = localStorage.getItem("_token");
       const response = await callApi(
         `account/${id}`,
@@ -101,6 +97,10 @@ const User = ({ match }) => {
                 <tr>
                   <td>Created On: </td>
                   <td>{userData.createdOn}</td>
+                </tr>
+                <tr>
+                  <td>isActive: </td>
+                  <td>{userData.isActive ? 'true' : 'false'}</td>
                 </tr>
               </tbody>
             </table>
