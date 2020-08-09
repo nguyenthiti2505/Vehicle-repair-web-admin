@@ -14,13 +14,15 @@ import {
 import { Spin, Skeleton, DatePicker } from "antd";
 import { format } from "date-fns";
 
-import { fetchStations } from "../../redux/stationRedux/actions";
+import { fetchOrders } from "../../redux/orderRedux/actions";
 
-const Stations = () => {
+const Orders = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { RangePicker } = DatePicker;
-  const { fetching, data } = useSelector((state) => state.station);
+  console.log(`hihi${useSelector((state) => state.order)}`);
+
+  const { fetching, data } = useSelector((state) => state.order);
 
   const [pageSize, setPageSize] = useState(10);
 
@@ -32,7 +34,7 @@ const Stations = () => {
 
   const pageChange = (newPage) => {
     if (newPage) {
-      currentPage !== newPage && history.push(`/stations?page=${newPage}`);
+      currentPage !== newPage && history.push(`/orders?page=${newPage}`);
     }
   };
 
@@ -41,7 +43,7 @@ const Stations = () => {
       const fromDate = new Date(e[0]);
       const toDate = new Date(e[1]);
       dispatch(
-        fetchStations({
+        fetchOrders({
           pageIndex: page,
           pageSize,
           fromDate: formatDateTime(fromDate),
@@ -49,7 +51,7 @@ const Stations = () => {
         })
       );
     } else {
-      dispatch(fetchStations({ pageIndex: page, pageSize }));
+      dispatch(fetchOrders({ pageIndex: page, pageSize }));
     }
   };
 
@@ -63,12 +65,12 @@ const Stations = () => {
 
   const paginationChange = (pageSize) => {
     setPageSize(pageSize);
-    dispatch(fetchStations({ pageIndex: page, pageSize }));
+    dispatch(fetchOrders({ pageIndex: page, pageSize }));
   };
 
   useEffect(() => {
     currentPage !== page && setPage(currentPage);
-    dispatch(fetchStations({ pageIndex: page, pageSize }));
+    dispatch(fetchOrders({ pageIndex: page, pageSize }));
   }, [currentPage, pageSize, page, dispatch, history]);
 
   return (
@@ -78,7 +80,7 @@ const Stations = () => {
           <CCard>
             <CCardHeader>
               <CRow>
-                <CCol lg="6">Stations</CCol>
+                <CCol lg="6">Orders</CCol>
                 <CCol lg="6">
                   <RangePicker
                     format="DD-MM-YYYY HH:mm"
@@ -93,11 +95,10 @@ const Stations = () => {
                 <CDataTable
                   items={data?.sources}
                   fields={[
-                    { key: "stationName", _classes: "font-weight-bold" },
-                    "stationOwner",
-                    "totalOrder",
-                    "totalService",
-                    "totalRevenue",
+                    { key: "customerName", _classes: "font-weight-bold" },
+                    "customerPhone",
+                    "totalPrice",
+                    "status",
                     "createdOn",
                   ]}
                   hover
@@ -115,7 +116,7 @@ const Stations = () => {
                     placeholder: "Type anything to search",
                   }}
                   columnFilter
-                  onRowClick={(item) => history.push(`/stations/${item.id}`)}
+                  onRowClick={(item) => history.push(`/orders/${item.id}`)}
                   scopedSlots={{
                     createdOn: (item) => (
                       <td>
@@ -144,4 +145,4 @@ const Stations = () => {
   );
 };
 
-export default Stations;
+export default Orders;

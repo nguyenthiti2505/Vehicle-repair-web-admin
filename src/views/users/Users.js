@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import {
   CBadge,
   CCard,
@@ -95,7 +95,7 @@ const Users = () => {
             <CCardHeader>
               <CRow>
                 <CCol lg="9">
-                <Link to="/form">
+                  <Link to="/form">
                     <CButton className="btn btn-success">Add</CButton>
                   </Link>
                 </CCol>
@@ -120,7 +120,6 @@ const Users = () => {
                     "createdOn",
                     "isActive",
                   ]}
-                  
                   hover
                   striped
                   itemsPerPageSelect={{
@@ -129,7 +128,6 @@ const Users = () => {
                   }}
                   itemsPerPage={pageSize}
                   onPaginationChange={paginationChange}
-                  
                   clickableRows
                   sorter
                   tableFilter={{
