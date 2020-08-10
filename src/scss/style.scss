@@ -5,6 +5,9 @@
 @import "~@coreui/coreui/scss/coreui.scss";
 
 // If you want to add something do it here
-@import "custom";
+@import "custom.scss";
+
+// mixin
+@import "mixin";
 
 @import '~antd/dist/antd.css';

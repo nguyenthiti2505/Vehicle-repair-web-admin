@@ -1,3 +1,4 @@
+@import "mixin";
 // Here you can add other styles
 input[type=number].no-spinner::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
@@ -30,3 +31,19 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
         height: 165px;
     }
 }
+
+/// button active and banned
+.button-active {
+    @include style-glowing-button();
+}
+    @include glowing-button(#1b9e3e);
+
+.button-ban {
+    @include style-glowing-button();
+  }
+    @include glowing-button(#d8d841);
+  
+
+  
+  
+  
