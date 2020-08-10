@@ -35,22 +35,22 @@ const User = ({ match }) => {
         <CCard>
           <CCardHeader>
             <CRow>
-              <CCol lg="9">User id: {match.params.id}</CCol>
-              <CCol lg="3">
+              <CCol lg="10"><span class="font-weight-bold">User id:</span> {match.params.id}</CCol>
+              <CCol lg="2">
                   {(userData?.isActive) ? (
-                  <button 
-                    onClick={handleChangeBannedUser}
-                  >
-                      Active
-                  </button>
-                  ) : (
-                  <button 
-                    onClick={handleChangeBannedUser}
-                  >
-                      Banned
-                  </button>
+                  <label className="switch">
+                    <div>
+                      <button class="btn btn-success button-active" onClick={handleChangeBannedUser}>Active</button>
+                    </div>
+                  </label>
+                  ) : 
+                  (
+                    <label>
+                        <button class="btn btn-warning button-ban" onClick={handleChangeBannedUser}>
+                          Banned
+                        </button>
+                    </label>
                   )}
-                
               </CCol>
             </CRow>
           </CCardHeader>

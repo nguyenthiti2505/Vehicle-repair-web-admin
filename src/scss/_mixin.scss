@@ -1,0 +1,26 @@
+@mixin style-glowing-button(){
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-animation: glowing 1500ms infinite;
+    -moz-animation: glowing 1500ms infinite;
+    -o-animation: glowing 1500ms infinite;
+    animation: glowing 1500ms infinite;
+}
+
+@mixin glowing-button($color){
+    @-webkit-keyframes glowing {
+        0% { -webkit-box-shadow: 0 0 1px $color; }
+        50% { -webkit-box-shadow: 0 0 20px $color; }
+        100% {  -webkit-box-shadow: 0 0 2px $color; }
+    }
+    
+}
