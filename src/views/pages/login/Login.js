@@ -42,10 +42,11 @@ const Login = () => {
   }
 
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    <div className="c-app c-default-layout flex-row align-items-center login">
       <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md="8">
+        <CRow className="justify-content-right">
+          <CCol md="7"></CCol>
+          <CCol md="5">
             <Spin tip="Loading..." size="large" spinning={loading}>
               <CCardGroup>
                 <CCard className="p-4">
@@ -83,6 +84,7 @@ const Login = () => {
                           autoComplete="current-password"
                         />
                       </CInputGroup>
+                     
                       <CRow>
                         <CCol xs="6">
                           <CButton color="success" onClick={handleLogin} className="px-4">Login</CButton>
@@ -94,16 +96,6 @@ const Login = () => {
                         </CCol>
                       </CRow>
                     </CForm>
-                  </CCardBody>
-                </CCard>
-                <CCard className="text-white bg-success py-5 d-md-down-none" style={{ width: '44%' }}>
-                  <CCardBody className="text-center">
-                    <div>
-                      <h2 className="text-white">ADMIN</h2>
-                      <br></br>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
-                    </div>
                   </CCardBody>
                 </CCard>
               </CCardGroup>

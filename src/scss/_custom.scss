@@ -43,7 +43,28 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
   }
     @include glowing-button(#d8d841);
   
-
+// Login
+.login {
+    background-image: url('/dashboard/background.png');
+    background-size: cover;
+    background-position: center;
+    .content-login {
+        background-image: url('/dashboard/logo.png');
+        background-size: cover;
+    }
+}
   
-  
-  
+// sidebar
+.c-sidebar {
+    // .c-sidebar-brand {
+    //     color: #ffffff;
+    //     background: $icon-primary;
+    // }
+    // .c-sidebar-nav-item {
+    //     width: inherit;
+    //     background: #0a615859;
+    // }
+    // .c-sidebar-minimizer {
+    //     background-color: $icon-primary
+    // }
+}
