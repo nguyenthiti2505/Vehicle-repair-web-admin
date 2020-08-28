@@ -118,7 +118,7 @@ const MainChartExample = attributes => {
 
   // render
   return (
-    <CCard>
+    <CCard  className="traffic">
       <CCardBody>
         <CRow className="chart">
           <CCol sm="4">

@@ -5,6 +5,29 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     -webkit-appearance: none; 
      margin: 0; 
 }
+// Header 
+.c-header {
+    background: #ffffff;
+    border: none !important;
+    .c-subheader {
+        background: #f8fafc;
+        border: none !important;
+    }
+}
+.c-main {
+    padding-top: 0 !important;
+    .fade {
+        background: white;
+        transition: opacity 0.15s linear;
+        .widgets.row {
+            padding: 20px;
+        }
+        .traffic.card {
+            margin: 0 20px;
+        }
+    }
+}
+
 // Dashboard
 .chart {
     h4#traffic {
@@ -56,15 +79,41 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
   
 // sidebar
 .c-sidebar {
-    // .c-sidebar-brand {
-    //     color: #ffffff;
-    //     background: $icon-primary;
-    // }
-    // .c-sidebar-nav-item {
-    //     width: inherit;
-    //     background: #0a615859;
-    // }
-    // .c-sidebar-minimizer {
-    //     background-color: $icon-primary
-    // }
+    color: #000;
+    .c-sidebar-nav-dropdown.c-show {
+        background: $white;
+        .c-sidebar-nav-dropdown-toggle {
+            color: $black;
+        }
+        .c-sidebar-nav-link {
+            color: $black;
+        }
+    }
+    .c-sidebar-nav-dropdown-toggle {
+        color: $black;
+        &:hover {
+            .c-sidebar-nav-icon {
+                color: $black;
+            }
+        }
+        .c-sidebar-nav-icon {
+            color: $black;
+        }
+    }
+    .c-sidebar-brand {
+        background: #ffffffba;
+    }
+    .c-sidebar-nav.ps {
+        background: white;
+        border-right: 0.5px solid #d8dbe0;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+    }
+    .c-sidebar-nav-item {
+        width: inherit;
+        background: $primary;
+    }
+    .c-sidebar-minimizer {
+        background-color: $white;
+    }
 }

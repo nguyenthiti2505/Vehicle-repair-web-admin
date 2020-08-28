@@ -1,22 +1,10 @@
 export default [
-  {
-    _tag: "CSidebarNavItem",
-    name: "Dashboard",
-    to: "/dashboard",
-    icon: "cil-speedometer",
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Data Management"],
-  },
+
   // User
   {
     _tag: "CSidebarNavDropdown",
     name: "Users",
+    color: "black" ,
     route: "/users",
     icon: "cil-user",
     _children: [
@@ -46,7 +34,7 @@ export default [
     _tag: "CSidebarNavDropdown",
     name: "Orders",
     route: "/orders",
-    icon: "cil-settings",
+    icon: "cil-speedometer",
     _children: [
       {
         _tag: "CSidebarNavItem",

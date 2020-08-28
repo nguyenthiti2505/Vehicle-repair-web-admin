@@ -21,7 +21,7 @@ const WidgetsDropdown = () => {
   const { fetching, data } = useSelector((state) => state.user);
   const dataStation = useSelector((state) => state.station.data);
 
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize] = useState(10);
   const [orders, setOrders] = useState([]);
 
   const queryPage = useLocation().search.match(/page=([0-9]+)/, "");
