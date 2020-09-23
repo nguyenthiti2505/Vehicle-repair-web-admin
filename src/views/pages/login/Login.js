@@ -45,7 +45,7 @@ const Login = () => {
     <div className="c-app c-default-layout flex-row align-items-center login">
       <CContainer>
         <CRow className="justify-content-right">
-          <CCol md="7"></CCol>
+          <CCol md="6"></CCol>
           <CCol md="5">
             <Spin tip="Loading..." size="large" spinning={loading}>
               <CCardGroup>

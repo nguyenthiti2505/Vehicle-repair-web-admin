@@ -33,7 +33,7 @@ const TheHeaderDropdown = () => {
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
           <CImg
-            src={'avatars/6.jpg'}
+            src={'avatars/9.jpg'}
             className="c-avatar-img"
             alt="admin@bootstrapmaster.com"
           />

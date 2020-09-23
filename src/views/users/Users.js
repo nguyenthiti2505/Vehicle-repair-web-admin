@@ -94,8 +94,8 @@ const Users = () => {
             <CCardHeader>
               <CRow>
                 <CCol lg="9">
-                  <Link to="/form">
-                    <CButton className="btn btn-success">Add</CButton>
+                  <Link to="">
+                    Users
                   </Link>
                 </CCol>
                 <CCol lg="3">

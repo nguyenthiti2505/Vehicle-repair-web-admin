@@ -38,6 +38,15 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     }
 }
 
+.c-avatar {
+    width: 50px;
+    height: 43px;
+    .c-avatar-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50em;
+    }
+}
 // Chart
 .chart-title {
     color: $light-primary;
@@ -77,43 +86,3 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     }
 }
   
-// sidebar
-.c-sidebar {
-    color: #000;
-    .c-sidebar-nav-dropdown.c-show {
-        background: $white;
-        .c-sidebar-nav-dropdown-toggle {
-            color: $black;
-        }
-        .c-sidebar-nav-link {
-            color: $black;
-        }
-    }
-    .c-sidebar-nav-dropdown-toggle {
-        color: $black;
-        &:hover {
-            .c-sidebar-nav-icon {
-                color: $black;
-            }
-        }
-        .c-sidebar-nav-icon {
-            color: $black;
-        }
-    }
-    .c-sidebar-brand {
-        background: #ffffffba;
-    }
-    .c-sidebar-nav.ps {
-        background: white;
-        border-right: 0.5px solid #d8dbe0;
-        overflow: -moz-scrollbars-none;
-        -ms-overflow-style: none;
-    }
-    .c-sidebar-nav-item {
-        width: inherit;
-        background: $primary;
-    }
-    .c-sidebar-minimizer {
-        background-color: $white;
-    }
-}
