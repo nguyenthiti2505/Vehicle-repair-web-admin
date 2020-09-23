@@ -126,8 +126,8 @@ const Orders = () => {
                   }}
                 />
                 <CRow>
-                  <CCol lg="9">Tổng : {data?.totalCount}</CCol>
-                  <CCol lg="3">
+                  <CCol lg="7">Tổng : {data?.totalCount}</CCol>
+                  <CCol lg="5">
                     <CPagination
                       activePage={data?.pageIndex}
                       onActivePageChange={pageChange}

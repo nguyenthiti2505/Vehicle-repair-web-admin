@@ -85,7 +85,7 @@ const WidgetsDropdown = () => {
         <CWidgetDropdown
           color="gradient-warning"
           header={orders?.totalCount}
-          text="New Orders"
+          text="List Orders"
         >
         <CImg
           align="center"

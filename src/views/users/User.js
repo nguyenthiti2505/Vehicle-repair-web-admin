@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
@@ -38,18 +38,14 @@ const User = ({ match }) => {
               <CCol lg="10"><span class="font-weight-bold">User id:</span> {match.params.id}</CCol>
               <CCol lg="2">
                   {(userData?.isActive) ? (
-                  <label className="switch">
-                    <div>
-                      <button class="btn btn-success button-active" onClick={handleChangeBannedUser}>Active</button>
-                    </div>
-                  </label>
+                      <button class="btn btn-danger button-ban" onClick={handleChangeBannedUser}>
+                        Banned
+                      </button>
                   ) : 
                   (
-                    <label>
-                        <button class="btn btn-warning button-ban" onClick={handleChangeBannedUser}>
-                          Banned
-                        </button>
-                    </label>
+                      <button class="btn btn-success button-active" onClick={handleChangeBannedUser}>
+                        Active
+                      </button>
                   )}
               </CCol>
             </CRow>

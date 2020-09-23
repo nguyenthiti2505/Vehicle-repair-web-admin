@@ -5,6 +5,29 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     -webkit-appearance: none; 
      margin: 0; 
 }
+// Header 
+.c-header {
+    background: #ffffff;
+    border: none !important;
+    .c-subheader {
+        background: #f8fafc;
+        border: none !important;
+    }
+}
+.c-main {
+    padding-top: 0 !important;
+    .fade {
+        background: white;
+        transition: opacity 0.15s linear;
+        .widgets.row {
+            padding: 20px;
+        }
+        .traffic.card {
+            margin: 0 20px;
+        }
+    }
+}
+
 // Dashboard
 .chart {
     h4#traffic {
@@ -15,6 +38,15 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
     }
 }
 
+.c-avatar {
+    width: 50px;
+    height: 43px;
+    .c-avatar-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50em;
+    }
+}
 // Chart
 .chart-title {
     color: $light-primary;
@@ -43,7 +75,14 @@ input[type=number].no-spinner::-webkit-inner-spin-button,
   }
     @include glowing-button(#d8d841);
   
-
-  
-  
+// Login
+.login {
+    background-image: url('/dashboard/background.png');
+    background-size: cover;
+    background-position: center;
+    .content-login {
+        background-image: url('/dashboard/logo.png');
+        background-size: cover;
+    }
+}
   
